@@ -164,7 +164,7 @@ payment_system(){
             scanf("%d",&note_i);
             if(note_i > note_1){
                 printf("\nYou don't have notes that much! Aborting transaction...\n");
-                system("pause");
+                return;
             }
             note_1 = note_1 - note_i;
             note_i_total = note_i * 1;
@@ -178,7 +178,7 @@ payment_system(){
             }
             else if(note_i_total != total_price){
                 printf("Insufficient funds, aborting transaction..");
-                system("pause");
+                return;
             }
         }
         else if(note_type == 5){ // When user inserts RM 5
@@ -186,7 +186,7 @@ payment_system(){
             scanf("%d",&note_j);
             if(note_j > note_5){
                 printf("\nYou don't have notes that much! Aborting transaction...\n");
-                system("pause");
+                return;
             }
             note_5 = note_5 - note_j;
             note_j_total = note_j * 5;
@@ -200,7 +200,7 @@ payment_system(){
             }
             else if(note_j_total != total_price){
                 printf("Insufficient funds, aborting transaction..");
-                system("pause");
+                return;
             }
         }
         else if(note_type == 10){ // When user inserts RM 10
@@ -208,7 +208,7 @@ payment_system(){
             scanf("%d",&note_k);
             if(note_k > note_10){
                 printf("\nYou don't have notes that much! Aborting transaction...\n");
-                system("pause");
+                return;
             }
             note_10 = note_10 - note_k;
             note_k_total = note_k * 10;
@@ -222,7 +222,7 @@ payment_system(){
             }
             else if(note_k_total != total_price){
                 printf("Insufficient funds, aborting transaction..");
-                system("pause");
+                return;
             }
         }
     }
@@ -239,6 +239,5 @@ credit_system(){
 |=================================|
  == Thank you for your purchase! ==
     )EOF");
-    system("pause");
 }
 
