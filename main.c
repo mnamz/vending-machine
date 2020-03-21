@@ -4,15 +4,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
-#include <ctype.h>
+#include <time.h>
 
 // Global variables
     // Drinks price
     float pepsi_price = 1.5, coke_price = 1.5, hundred_plus_price = 1.5,
     ribena_price = 1.2, mineral_water_price = 1.0, fanta_price = 1.5;
-    
-    //Payment system 
+
+    //Payment system
     int total_product; char price_total; int payment_method;
     float total_price, wallet_balance = 40.00;
 
@@ -22,6 +21,13 @@
     float note_i_total, note_j_total, note_k_total,
     balance_i, balance_j, balance_k,
     cash_balance_i, cash_balance_j, cash_balance_k, total_wallet;
+
+// Delay features
+void delay(int number_of_seconds) {
+    int milli_seconds = 1000 * number_of_seconds; // Converting time into ms
+    clock_t start_time = clock();  // Time initialization
+    while (clock() < start_time + milli_seconds); // Looping till required time is not achieved
+}
 
 // Core
 int main(){
@@ -137,10 +143,16 @@ payment_system(){
     scanf("%d",&payment_method);
     // User pays with e-wallet
     if(payment_method == 1){
-        printf("Press any key to authorize the payment..\n");
+        printf("Please wait for payment to authorize..\n");
         wallet_balance -= total_price;
-        printf("Payment completed!\n");
-        printf("New balance : %.2f", wallet_balance);
+        int timer;
+        for (timer = 0; timer < 3; timer++) {
+            delay(1);
+            printf("...", time + 1);
+        }
+        printf("\nPayment completed!\n");
+        printf("New balance : %.2f\n\n", wallet_balance);
+        credit_system();
     }
     // User pays with cash
     else if(payment_method == 2){
@@ -148,7 +160,7 @@ payment_system(){
         printf("Insert the note of.. \nRM");
         scanf("%d",&note_type);
         if(note_type == 1){ // When user inserts RM 1
-            printf("How many of RM1 notes you want to insert?\n"); 
+            printf("How many of RM1 notes you want to insert?\n");
             scanf("%d",&note_i);
             if(note_i > note_1){
                 printf("\nYou don't have notes that much! Aborting transaction...\n");
@@ -217,7 +229,6 @@ payment_system(){
 }
 
 credit_system(){
-
     printf("Please pickup your drinks below..\n");
     printf(R"EOF(
 |=================================|
@@ -228,7 +239,5 @@ credit_system(){
 |=================================|
  == Thank you for your purchase! ==
     )EOF");
-
-
 }
 
